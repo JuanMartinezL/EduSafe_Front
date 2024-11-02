@@ -1,39 +1,65 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { Button, Container, Form } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../assets/css/Login.css';
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
-  const history = useHistory();
+  const navigate = useNavigate();
 
-  const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post('http://localhost:5000/api/auth/login', formData);
       localStorage.setItem('token', res.data.token);
-      history.push('/dashboard');
+      navigate('/dashboard'); // Redirige al usuario al dashboard tras el login
     } catch (err) {
       console.error(err);
     }
   };
 
   return (
-    <div className="container">
-      <h1 className="mt-5">Iniciar Sesión</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="form-label">Email</label>
-          <input type="email" className="form-control" name="email" onChange={handleChange} />
+    <Container className="login-container text-center mt-5">
+      <h1 className="mb-4">Iniciar Sesión</h1>
+      <Form onSubmit={handleSubmit} className="text-start">
+        <Form.Group className="mb-3">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type="email"
+            name="email"
+            placeholder="Ingresa tu correo electrónico"
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Contraseña</Form.Label>
+          <Form.Control
+            type="password"
+            name="password"
+            placeholder="Ingresa tu contraseña"
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+        <div className="d-grid gap-2">
+          <Button variant="primary" type="submit" size="lg">
+            Iniciar Sesión
+          </Button>
         </div>
-        <div className="mb-3">
-          <label className="form-label">Contraseña</label>
-          <input type="password" className="form-control" name="password" onChange={handleChange} />
-        </div>
-        <button type="submit" className="btn btn-primary">Iniciar Sesión</button>
-      </form>
-    </div>
+      </Form>
+      <div className="mt-3">
+        <p>¿No tienes una cuenta? <Link to="/register">Regístrate aquí</Link></p>
+        <Button variant="secondary" onClick={() => navigate(-1)} size="sm">
+          Regresar
+        </Button>
+      </div>
+    </Container>
   );
 };
 

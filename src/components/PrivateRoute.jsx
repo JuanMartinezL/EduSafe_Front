@@ -1,26 +1,14 @@
-
-import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Navigate } from 'react-router-dom';
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  const isAuthenticated = !!localStorage.getItem('token');
+const PrivateRoute = ({ children }) => {
+  const isAuthenticated = !!localStorage.getItem('token'); // Verifica si el usuario está autenticado
 
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        isAuthenticated ? (
-          <Component {...props} />
-        ) : (
-          <Redirect to="/login" />
-        )
-      }
-    />
-  );
+  return isAuthenticated ? children : <Navigate to="/login" />;
 };
 
 PrivateRoute.propTypes = {
-  component: PropTypes.elementType.isRequired,
+  children: PropTypes.node.isRequired,  // Validación del prop children
 };
 
 export default PrivateRoute;

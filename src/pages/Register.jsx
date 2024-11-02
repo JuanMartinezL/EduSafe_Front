@@ -1,10 +1,11 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import '../assets/css/Register.css'
 
 const Register = () => {
   const [formData, setFormData] = useState({ name: '', last_name: '', email: '', password: '', roleName: 'Estudiante' });
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -12,15 +13,15 @@ const Register = () => {
     e.preventDefault();
     try {
       await axios.post('http://localhost:5000/api/auth/register', formData);
-      history.push('/login');
+      navigate('/login');
     } catch (err) {
       console.error(err);
     }
   };
 
   return (
-    <div className="container">
-      <h1 className="mt-5">Registrarse</h1>
+    <div className="register-container">
+      <h1>Registrarse</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="form-label">Nombre</label>
@@ -38,8 +39,12 @@ const Register = () => {
           <label className="form-label">Contraseña</label>
           <input type="password" className="form-control" name="password" onChange={handleChange} />
         </div>
-        <button type="submit" className="btn btn-primary">Registrarse</button>
+        <button type="submit" className="btn btn-primary w-100">Registrarse</button>
       </form>
+      <div className="text-center mt-3">
+        <p>¿Ya tienes una cuenta? <a href="/login" className="btn-link">Iniciar sesión</a></p>
+        <button className="btn btn-secondary mt-2" onClick={() => navigate(-1)}>Volver</button>
+      </div>
     </div>
   );
 };

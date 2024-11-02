@@ -1,5 +1,4 @@
-
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -14,17 +13,17 @@ import PrivateRoute from './components/PrivateRoute';
 const App = () => {
   return (
     <Router>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-        <PrivateRoute path="/dashboard" component={Dashboard} />
-        <PrivateRoute path="/reports" component={Reports} />
-        <PrivateRoute path="/create-report" component={CreateReport} />
-        <PrivateRoute path="/resources" component={Resources} />
-        <PrivateRoute path="/create-resource" component={CreateResource} />
-        <PrivateRoute path="/admin" component={AdminDashboard} />
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+        <Route path="/reports" element={<PrivateRoute><Reports /></PrivateRoute>} />
+        <Route path="/create-report" element={<PrivateRoute><CreateReport /></PrivateRoute>} />
+        <Route path="/resources" element={<PrivateRoute><Resources /></PrivateRoute>} />
+        <Route path="/create-resource" element={<PrivateRoute><CreateResource /></PrivateRoute>} />
+        <Route path="/admin" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} />
+      </Routes>
     </Router>
   );
 };

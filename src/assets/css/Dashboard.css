@@ -1,0 +1,29 @@
+.dashboard-container {
+    height: 100vh;
+    display: flex;
+  }
+  
+  .sidebar {
+    background-color: #f8f9fa;
+    padding: 15px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sidebar h2 {
+    margin-bottom: 20px;
+  }
+  
+  .sidebar .nav-link {
+    font-weight: 500;
+    color: #007bff;
+  }
+  
+  .sidebar .nav-link:hover {
+    background-color: #e9ecef;
+    border-radius: 5px;
+  }
+  
+  .content {
+    padding: 20px;
+  }
+  
