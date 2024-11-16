@@ -1,14 +1,18 @@
-import PropTypes from 'prop-types';
-import { Navigate } from 'react-router-dom';
+import PropTypes from 'prop-types';  
+import { Navigate } from 'react-router-dom';  
 
+// Componente para proteger las rutas privadas y verifica si el usuario está autenticado
 const PrivateRoute = ({ children }) => {
-  const isAuthenticated = !!localStorage.getItem('token'); // Verifica si el usuario está autenticado
+  // Verificamos si el usuario está autenticado al comprobar si existe un token en localStorage
+  const isAuthenticated = !!localStorage.getItem('token'); // !! convierte el valor a un booleano
 
-  return isAuthenticated ? children : <Navigate to="/login" />;
+  // Si el usuario está autenticado, renderiza los 'children' , si no, redirige al login
+  return isAuthenticated ? children : <Navigate to="/login" />; // Redirige a '/login' si no está autenticado
 };
 
+// Valida que el prop 'children' sea un nodo de React
 PrivateRoute.propTypes = {
-  children: PropTypes.node.isRequired,  // Validación del prop children
+  children: PropTypes.node.isRequired,  // Asegura que 'children' es requerido y es un nodo válido 
 };
 
-export default PrivateRoute;
+export default PrivateRoute;  

@@ -1,29 +1,137 @@
+
+/* Contenedor principal del Dashboard */
 .dashboard-container {
-    height: 100vh;
-    display: flex;
-  }
-  
-  .sidebar {
-    background-color: #f8f9fa;
-    padding: 15px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .sidebar h2 {
-    margin-bottom: 20px;
-  }
-  
-  .sidebar .nav-link {
-    font-weight: 500;
-    color: #007bff;
-  }
-  
-  .sidebar .nav-link:hover {
-    background-color: #e9ecef;
-    border-radius: 5px;
-  }
-  
-  .content {
-    padding: 20px;
-  }
-  
+  width: 100vw; /* Ancho del 100% del viewport */
+  height: 100vh; /* Alto del 100% del viewport */
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  background-color: #e9ecef; /* Color de fondo más suave */
+  box-sizing: border-box; /* Asegura que el padding no exceda el tamaño */
+  overflow-y: auto; /* Permite desplazamiento si el contenido excede */
+}
+
+/* Sección de información del usuario */
+.user-info-section {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid #ddd;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.user-info-section:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); /* Sombra más profunda al pasar el cursor */
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-info img {
+  border: 3px solid #007bff;
+  border-radius: 50%; /* Redondeo de la imagen */
+  margin-bottom: 15px;
+  width: 120px;
+  height: 120px; /* Tamaño de la imagen */
+}
+
+.user-info h5 {
+  margin-top: 15px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+}
+
+/* Botón de editar perfil */
+.edit-profile-btn {
+  margin-top: 15px;
+  width: 100%;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-weight: 600;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.edit-profile-btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Sección de opciones de usuario */
+.options-section {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.options-section button {
+  flex: 1;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-weight: 600;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.options-section button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Contenido principal del dashboard */
+.dashboard-content {
+  flex-grow: 1; /* Ocupa el espacio restante */
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Desplazamiento en caso de contenido extenso */
+}
+
+/* Estilo para las tarjetas */
+.dashboard-content .card {
+  margin-bottom: 25px;
+  border: none;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-content .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-content .card .card-title {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Botón de acciones dentro de la tarjeta */
+.dashboard-content .card button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-weight: 600;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.dashboard-content .card button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
